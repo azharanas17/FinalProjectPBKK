@@ -10,12 +10,12 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::latest()->get();
-        return view('index', compact('books'));
+        return view('book.index', compact('books'));
     }
 
     public function create()
     {
-        return view('create');
+        return view('book.create');
     }
 
     public function store(Request $request)
@@ -53,7 +53,7 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::findOrFail($id);
-        return view('edit', compact('book'));
+        return view('book.edit', compact('book'));
     }
 
     public function update(Request $request, $id)
