@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Module\Product\Presentation\Controller;
+namespace App\Http\Module\Book\Presentation\Controller;
 
 use App\Http\Module\Book\Application\Services\CreateBook\CreateBookRequest;
 use App\Http\Module\Book\Application\Services\CreateBook\CreateBookService;
