@@ -2,8 +2,8 @@
 
 namespace App\Http\Module\Book\Infrastructure\Repository;
 
-use App\Http\Module\Product\Domain\Model\Book;
-use App\Http\Module\Product\Domain\Services\Repository\BookRepositoryInterface;
+use App\Http\Module\Book\Domain\Model\Book;
+use App\Http\Module\Book\Domain\Services\Repository\BookRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class BookRepository implements BookRepositoryInterface
