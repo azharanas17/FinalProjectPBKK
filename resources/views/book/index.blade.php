@@ -7,62 +7,51 @@
     <title>List of Books</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
 </head>
-<body>    
+<body>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Daftar Buku') }}
+        </h2>
+    </x-slot>    
     <div class="bg-white p-4 mx-auto">
-        <a href="{{ route('book.create') }}" class="bg-green-500 text-white text-sm py-3 px-6 absolute rounded-md top-5 right-5 m-4">New Post</a>
+        <a href="{{ route('book.create') }}" class="bg-gray-500 text-white text-sm py-3 px-6  rounded-md top-5 right-5 m-4">New Post</a>
     </div>
 
     <div class="bg-white p-4 mx-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-2xl">
+                    <th scope="col" class="px-6 py-3 text-2xl text-center">
                         Judul Buku
                     </th>
-                    <th scope="col" class="px-6 py-3 text-2xl">
+                    <th scope="col" class="px-6 py-3 text-2xl text-center">
                         Penulis
                     </th>
-                    <th scope="col" class="px-6 py-3 text-2xl">
+                    <th scope="col" class="px-6 py-3 text-2xl text-center">
                         Tahun Terbit
                     </th>
-                    <th scope="col" class="px-6 py-3 text-2xl">
+                    <th scope="col" class="px-6 py-3 text-2xl text-center">
                         Jumlah Buku
                     </th>
-                    <th scope="col" class="px-6 py-3 text-2xl">
+                    <th scope="col" class="px-6 py-3 text-2xl text-center">
                         Action
                     </th>
                 </tr>
             </thead>
             <tbody>
-                {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop
-                    </td>
-                    <td class="px-6 py-4">
-                        $2999
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr> --}}
                 @forelse ($books as $book)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $book->judul_buku }}
                     </th>
-                    <td>
+                    <td class="px-6 py-3 text-1xl text-center">
                         {{ $book->penulis }}
                     </td>
-                    <td>
+                    <td class="px-6 py-3 text-1xl text-center">
                         {{ $book->tahun_terbit }}
                     </td>
-                    <td>
+                    <td class="px-6 py-3 text-1xl text-center">
                         {{ $book->jumlah_buku }}
                     </td>
                     <td class="text-center">
@@ -138,5 +127,6 @@
         </table>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+</x-app-layout>
 </body>
 </html>
