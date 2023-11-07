@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,6 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('book.destroy');
     Route::get('/books/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
     
+});
+
+Route::get('/', function () {
+    \App\Jobs\job1::dispatch();
+    return view('welcome');
 });
 
 require __DIR__.'/auth.php';
