@@ -4,13 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::latest()->get();
-        return view('book.index', compact('books'));
+        $key = 'ind';
+
+        if (Cache::has($key)) {
+            \Log::info('Data retrieved from cache:', ['key' => $key]);
+            // dump('Data retrieved from cache:', Cache::get($key));
+            
+            $book = Cache::get($key);
+        } else {
+            $book = Book::orderby('kode', 'ASC')->get();
+
+            Cache::put($key, $book, 60);
+
+            \Log::info('Data stored in cache:', ['key' => $key]);
+            // dump('Data stored in cache:', $book);
+        }
+
+        return view('book.index', compact('book'));
     }
 
     public function create()
@@ -21,17 +37,17 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul_buku' => 'required|string|max:155',
-            'penulis' => 'required|string|max:155',
-            'tahun_terbit' => 'required|numeric',
-            'jumlah_buku' => 'required|numeric'
+            'kode' => 'required|string|max:155',
+            'judul' => 'required|string|max:155',
+            'pengarang' => 'required|string|max:155',
+            'penerbit' => 'required|string|max:155'
         ]);
 
         $book = Book::create([
-            'judul_buku' => $request->judul_buku,
-            'penulis' => $request->penulis,
-            'tahun_terbit' => $request->tahun_terbit,
-            'jumlah_buku' => $request->jumlah_buku
+            'kode' => $request->kode,
+            'judul' => $request->judul,
+            'pengarang' => $request->pengarang,
+            'penerbit' => $request->penerbit
         ]);
 
         if($book) {
@@ -59,19 +75,19 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'judul_buku' => 'required|string|max:155',
-            'penulis' => 'required|string|max:155',
-            'tahun_terbit' => 'required|numeric',
-            'jumlah_buku' => 'required|numeric'
+            'kode' => 'required|string|max:155',
+            'judul' => 'required|string|max:155',
+            'pengarang' => 'required|string|max:155',
+            'penerbit' => 'required|string|max:155'
         ]);
 
         $book = Book::findOrFail($id);
 
         $book->update([
-            'judul_buku' => $request->judul_buku,
-            'penulis' => $request->penulis,
-            'tahun_terbit' => $request->tahun_terbit,
-            'jumlah_buku' => $request->jumlah_buku
+            'kode' => $request->kode,
+            'judul' => $request->judul,
+            'pengarang' => $request->pengarang,
+            'penerbit' => $request->penerbit
         ]);
 
         if($book) {
