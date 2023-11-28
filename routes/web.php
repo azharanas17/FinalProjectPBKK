@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +37,20 @@ Route::middleware('auth')->group(function () {
     Route::put('/books/{id}', [BookController::class, 'update'])->name('book.update');
     Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('book.destroy');
     Route::get('/books/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
+
+    Route::get('/students', [StudentController::class, 'index'])->name('student.index');
+    Route::post('/students', [StudentController::class, 'store'])->name('student.store');
+    Route::get('/students/create', [StudentController::class, 'create'])->name('student.create');
+    Route::put('/students/{id}', [StudentController::class, 'update'])->name('student.update');
+    Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
+    Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
+
+    Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
+    Route::post('/staff', [StaffController::class, 'store'])->name('staff.store');
+    Route::get('/staff/create', [StaffController::class, 'create'])->name('staff.create');
+    Route::put('/staff/{id}', [StaffController::class, 'update'])->name('staff.update');
+    Route::delete('/staff/{id}', [StaffController::class, 'destroy'])->name('staff.destroy');
+    Route::get('/staff/{id}/edit', [StaffController::class, 'edit'])->name('staff.edit');
     
 });
 

@@ -12,11 +12,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">Data Siswa</a>
+                    <a class="nav-link" href="{{ route('student.index') }}">Data Siswa</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">Data Staff</a>
+                    <a class="nav-link" href="{{ route('staff.index') }}">Data Staff</a>
                 </li>
 
                 <li class="nav-item"> 
