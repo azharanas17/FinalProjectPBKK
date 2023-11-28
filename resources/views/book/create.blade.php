@@ -1,91 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('welcome')
+@section('title', 'Tambah Buku')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Create New Book</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- include summernote css -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-</head>
+@section('isihalaman')
 
-<body>
-
-    <div class="container mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-12">
-
-                <!-- Notifikasi menggunakan flash session data -->
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-error">
-                        {{ session('error') }}
-                    </div>
-                @endif
-
-                <div class="card border-0 shadow rounded">
-                    <div class="card-body">
-
-                        <form action="{{ route('book.store') }}" method="POST">
-                            @csrf
-
-                            <div class="form-group">
-                                <label for="judul_buku">Judul Buku</label>
-                                <input type="text" class="form-control @error('judul_buku') is-invalid @enderror"
-                                    name="judul_buku" value="{{ old('judul_buku') }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="penulis">Penulis</label>
-                                <input type="text" class="form-control @error('penulis') is-invalid @enderror"
-                                    name="penulis" value="{{ old('penulis') }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="tahun_terbit">Tahun Terbit</label>
-                                <input type="number" class="form-control @error('tahun_terbit') is-invalid @enderror"
-                                    name="tahun_terbit" value="{{ old('tahun_terbit') }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="jumlah_buku">Jumlah Buku</label>
-                                <input type="text" class="form-control @error('jumlah_buku') is-invalid @enderror"
-                                    name="jumlah_buku" value="{{ old('jumlah_buku') }}" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-md btn-primary">Save</button>
-                            <a href="{{ route('book.index') }}" class="btn btn-md btn-secondary">back</a>
-
-                        </form>
-                    </div>
+    <div class="my-5">
+        <form name="formbukutambah" id="formbukutambah" action="{{ route('book.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group row">
+                <label for="kode" class="col-sm-4 col-form-label">Kode Buku</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukan Kode Buku">
                 </div>
             </div>
-        </div>
+
+            <p>
+            <div class="form-group row">
+                <label for="judul" class="col-sm-4 col-form-label">Judul Buku</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukan Judul Buku">
+                </div>
+            </div>
+
+            <p>
+            <div class="form-group row">
+                <label for="pengarang" class="col-sm-4 col-form-label">Nama Pengarang</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="pengarang" name="pengarang" placeholder="Masukan Nama Pengarang">
+                </div>
+            </div>
+
+            <p>
+            <div class="form-group row">
+                <label for="penerbit" class="col-sm-4 col-form-label">Penerbit</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="penerbit" name="penerbit" placeholder="Masukan Nama Penerbit">
+                </div>
+            </div>
+
+            <p>
+            <div class="modal-footer">
+                <a href="{{ route('book.index') }}" class="btn btn-primary">Tutup</a>
+                <button type="submit" name="bukutambah" class="btn btn-success">Tambah</button>
+            </div>
+        </form>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- include summernote js -->
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#content').summernote({
-                height: 250, //set editable area's height
-            });
-        })
-    </script>
-</body>
-
-</html>
+@endsection
