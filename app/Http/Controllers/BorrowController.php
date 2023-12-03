@@ -20,9 +20,9 @@ class BorrowController extends Controller
 
     public function create()
     {
-        $staff = Staff::all();
-        $book = Book::all();
-        $student = Student::all();
+        $staff = Staff::orderBy('nama', 'ASC')->get();
+        $book = Book::orderBy('judul', 'ASC')->get();
+        $student = Student::orderBy('nama', 'ASC')->get();
         $list_compact = compact('staff', 'book', 'student');
         return view('borrow.create', $list_compact);
     }
@@ -60,9 +60,9 @@ class BorrowController extends Controller
     public function edit ($id)
     {
         $borrow = Borrow::findOrFail($id);
-        $staff = Staff::all();
-        $book = Book::all();
-        $student = Student::all();
+        $staff = Staff::orderBy('nama', 'ASC')->get();
+        $book = Book::orderBy('judul', 'ASC')->get();
+        $student = Student::orderBy('nama', 'ASC')->get();
         $list_compact = compact('borrow', 'staff', 'book', 'student');
         return view('borrow.edit', $list_compact);
     }
