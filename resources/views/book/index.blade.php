@@ -4,7 +4,24 @@
 @section('isihalaman')
     <h3><center>Daftar Buku Perpustakaan</center></h3>
 
-    <a href="{{ route('book.create') }}" class="btn btn-primary">Tambah Data Buku</a>
+    <div class="">
+        <a href="{{ route('book.create') }}" class="btn btn-primary col-md-3">Tambah Data Buku</a>
+        
+
+        <div class="col-md-3">
+        </div>
+        
+        <div class="col-md-3">
+            <form action="{{ route('book.search') }}" method="GET" class="form-inline">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="query" placeholder="Cari Buku...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <p>
     <table class="table table-bordered table-striped">
@@ -44,10 +61,10 @@
         </tbody>
     </table>
 
-    {{-- Halaman : {{ $book->currentPage() }} <br />
+    Halaman : {{ $book->currentPage() }} <br />
     Jumlah Data : {{ $book->total() }} <br />
-    Data Per Halaman : {{ $book->perPage() }} <br /> --}}
+    Data Per Halaman : {{ $book->perPage() }} <br />
 
-    {{-- {{ $book->links() }} --}}
+    {{ $book->links() }}
     
 @endsection

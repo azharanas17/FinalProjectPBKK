@@ -8,9 +8,20 @@ use Illuminate\Support\Facades\Cache;
 
 class BookController extends Controller
 {
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $book = Book::where('judul', 'LIKE', "%$query%")
+                    ->orWhere('kode', 'LIKE', "%$query%")
+                    ->orWhere('pengarang', 'LIKE', "%$query%")
+                    ->orWhere('penerbit', 'LIKE', "%$query%")
+                    ->paginate(10);
+
+        return view('book.index', compact('book'));
+    }
     public function index()
     {
-        $key = 'ind';
+        $key = "index-book";
 
         if (Cache::has($key)) {
             \Log::info('Data retrieved from cache:', ['key' => $key]);
@@ -18,9 +29,9 @@ class BookController extends Controller
             
             $book = Cache::get($key);
         } else {
-            $book = Book::orderby('kode', 'ASC')->get();
+            $book = Book::orderby('kode', 'ASC')->paginate(10);
 
-            Cache::put($key, $book, 60);
+            Cache::put($key, $book, 1);
 
             \Log::info('Data stored in cache:', ['key' => $key]);
             // dump('Data stored in cache:', $book);
