@@ -20,7 +20,7 @@
                 </li>
 
                 <li class="nav-item"> 
-                    <a class="nav-link" href="">Data Peminjaman</a> 
+                    <a class="nav-link" href="{{ route('borrow.index') }}">Data Peminjaman</a> 
                 </li>
 
                 <li class="nav-item">

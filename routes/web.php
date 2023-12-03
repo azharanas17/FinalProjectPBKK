@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\StudentController;
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()
+        ->route('dashboard');
 })->name('home');
 
 Route::get('/dashboard', function () {
@@ -52,6 +54,13 @@ Route::middleware('auth')->group(function () {
     Route::put('/staff/{id}', [StaffController::class, 'update'])->name('staff.update');
     Route::delete('/staff/{id}', [StaffController::class, 'destroy'])->name('staff.destroy');
     Route::get('/staff/{id}/edit', [StaffController::class, 'edit'])->name('staff.edit');
+
+    Route::get('/borrow', [BorrowController::class, 'index'])->name('borrow.index');
+    Route::post('/borrow', [BorrowController::class, 'store'])->name('borrow.store');
+    Route::get('/borrow/create', [BorrowController::class, 'create'])->name('borrow.create');
+    Route::put('/borrow/{id}', [BorrowController::class, 'update'])->name('borrow.update');
+    Route::delete('/borrow/{id}', [BorrowController::class, 'destroy'])->name('borrow.destroy');
+    Route::get('/borrow/{id}/edit', [BorrowController::class, 'edit'])->name('borrow.edit');
     
 });
 
