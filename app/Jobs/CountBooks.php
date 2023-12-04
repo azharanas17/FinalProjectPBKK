@@ -33,6 +33,8 @@ class CountBooks implements ShouldQueue
         $borrows = Borrow::all()->count();
 
         \Log::info('Jumlah Buku yang ada saat ini: ' . $books);
+        dump('Jumlah Buku yang ada saat ini: ' . $books);
         \Log::info('Jumlah buku yang dipinjam saat ini: ' . $borrows);
+        dump('Jumlah buku yang dipinjam saat ini: ' . $borrows);
     }
 }
