@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CountBooks;
 use App\Models\Borrow;
 use App\Models\Staff;
 use App\Models\Book;
@@ -14,6 +15,7 @@ class BorrowController extends Controller
     {
         $borrow = Borrow::orderby('id', 'ASC')
         ->paginate(10);
+        CountBooks::dispatch();
 
         return view('borrow.index', compact('borrow'));
     }

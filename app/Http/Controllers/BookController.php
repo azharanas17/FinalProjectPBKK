@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CountBooks;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -36,6 +37,7 @@ class BookController extends Controller
             \Log::info('Data stored in cache:', ['key' => $key]);
             // dump('Data stored in cache:', $book);
         }
+        CountBooks::dispatch();
 
         return view('book.index', compact('book'));
     }
